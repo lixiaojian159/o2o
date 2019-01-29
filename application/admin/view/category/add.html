@@ -7,10 +7,22 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="" placeholder="" id="adminName" name="adminName">
+			<input type="text" class="input-text" value="" placeholder="" id="name" name="name">
 		</div>
 	</div>
 	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3">角色：</label>
+		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
+			<select class="select" name="parent_id" size="1">
+				<option>请选择</option>
+				{volist name="categorys" id="category"}
+				<option value="{$category.id}">{$category.name}</option>
+				{/volist}
+			</select>
+			</span> 
+		</div>
+	</div>
+<!-- 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>初始密码：</label>
 		<div class="formControls col-xs-8 col-sm-9">
 			<input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password" name="password">
@@ -64,7 +76,7 @@
 			<textarea name="" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="$.Huitextarealength(this,100)"></textarea>
 			<p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
 		</div>
-	</div>
+	</div> -->
 	<div class="row cl">
 		<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
@@ -88,10 +100,10 @@ $(function(){
 	
 	$("#form-admin-add").validate({
 		rules:{
-			adminName:{
+			name:{
 				required:true,
-				minlength:4,
-				maxlength:16
+				minlength:2,
+				maxlength:6
 			},
 			password:{
 				required:true,
@@ -121,17 +133,18 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit({
 				type: 'post',
-				url: "xxxxxxx" ,
+				url: "{:url('admin/Category/save')}" ,
 				success: function(data){
-					layer.msg('添加成功!',{icon:1,time:1000});
+
+					//layer.msg('添加成功!',{icon:1,time:1000});
 				},
                 error: function(XmlHttpRequest, textStatus, errorThrown){
 					layer.msg('error!',{icon:1,time:1000});
 				}
 			});
-			var index = parent.layer.getFrameIndex(window.name);
-			parent.$('.btn-refresh').click();
-			parent.layer.close(index);
+			// var index = parent.layer.getFrameIndex(window.name);
+			// parent.$('.btn-refresh').click();
+			// parent.layer.close(index);
 		}
 	});
 });
