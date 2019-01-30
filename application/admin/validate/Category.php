@@ -18,6 +18,6 @@ class Category extends Validate{
 		'add'       => ['name','parent_id'],
 		'listorder' => ['id','listorder'],
 		'status'    => ['id','status'],
-		'update'    => ['id','name','parent_id','status','listorder']
+		'update'    => ['id','name','parent_id'],
     ];
 }

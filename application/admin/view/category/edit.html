@@ -4,20 +4,20 @@
 {block name="main"}
 <article class="page-container">
 	<form class="form form-horizontal" id="form-admin-add">
+	<input type="hidden" name="id" value="{$cate.id}">
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名称：</label>
 		<div class="formControls col-xs-8 col-sm-9">
-			<input type="text" class="input-text" value="" placeholder="" id="name" name="name">
+			<input type="text" class="input-text" value="{$cate.name}" id="name" name="name">
 		</div>
 	</div>
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3">上级分类：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="parent_id" size="1">
-				<option>请选择</option>
 				<option value="0">一级分类</option>
 				{volist name="categorys" id="category"}
-				<option value="{$category.id}">{$category.name}</option>
+				<option value="{$category.id}" {eq name="category.id" value="$cate.parent_id"}selected{/eq}>{$category.name}</option>
 				{/volist}
 			</select>
 			</span> 
@@ -134,10 +134,10 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit({
 				type: 'post',
-				url: "{:url('admin/Category/save')}" ,
+				url: "{:url('admin/Category/update')}" ,
 				success: function(data){
 					if(data.code){
-						layer.msg('添加成功!',{icon:1,time:1000});
+						layer.msg('修改成功!',{icon:1,time:1000});
 						var index = parent.layer.getFrameIndex(window.name);
 						parent.$('.btn-refresh').click();
 						parent.layer.close(index);

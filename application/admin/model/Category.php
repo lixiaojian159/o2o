@@ -3,14 +3,18 @@
 namespace app\admin\model;
 
 use think\Model;
+use traits\model\SoftDelete;
 
 class Category extends Model{
+
+	use SoftDelete;
 
 	protected $pk = 'id';
 	protected $table = 'o2o_category';
 	protected $autoWriteTimestamp = true;
 	protected $createTime = 'create_time';
 	protected $updateTime = 'update_time';
+	protected $deleteTime = 'delete_time';
 	//protected $dateFormat = 'Y/m/d';
 
     //添加分类
@@ -29,6 +33,6 @@ class Category extends Model{
     
     //获取一级栏目
     public function getFirstCategorys($id){
-    	return $this->where('parent_id',$id)->order('listorder','desc')->paginate(1);
+    	return $this->where('parent_id',$id)->order('listorder','desc')->paginate(15);
     }  
 }

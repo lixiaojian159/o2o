@@ -11,7 +11,7 @@
  Target Server Version : 100137
  File Encoding         : 65001
 
- Date: 29/01/2019 17:17:29
+ Date: 30/01/2019 17:22:12
 */
 
 SET NAMES utf8mb4;
@@ -128,18 +128,19 @@ CREATE TABLE `o2o_category`  (
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `create_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `update_time` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `delete_time` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `parent_id`(`parent_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of o2o_category
 -- ----------------------------
-INSERT INTO `o2o_category` VALUES (1, '美食', 0, 0, 1, 1548747873, 1548747873);
-INSERT INTO `o2o_category` VALUES (2, '娱乐', 0, 0, 1, 1548747878, 1548747878);
-INSERT INTO `o2o_category` VALUES (3, '电影', 0, 0, 1, 1548747884, 1548747884);
-INSERT INTO `o2o_category` VALUES (4, '12345', 1, 0, 1, 1548747932, 1548747932);
-INSERT INTO `o2o_category` VALUES (5, 'KTV', 2, 0, 1, 1548747977, 1548747977);
+INSERT INTO `o2o_category` VALUES (1, '美食', 0, 3, 1, 0, 1548832402, NULL);
+INSERT INTO `o2o_category` VALUES (2, '娱乐', 0, 2, 1, 1548747878, 1548832411, NULL);
+INSERT INTO `o2o_category` VALUES (3, '电影', 0, 1, 1, 1548747884, 1548832411, NULL);
+INSERT INTO `o2o_category` VALUES (4, '12345', 1, 0, 1, 1548747932, 1548832036, NULL);
+INSERT INTO `o2o_category` VALUES (5, 'KTV', 2, 0, 1, 1548747977, 1548832036, NULL);
 
 -- ----------------------------
 -- Table structure for o2o_city
